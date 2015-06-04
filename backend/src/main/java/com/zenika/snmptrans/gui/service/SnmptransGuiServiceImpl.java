@@ -1,6 +1,6 @@
 package com.zenika.snmptrans.gui.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.zenika.snmptrans.gui.model.QuerySet;
 import com.zenika.snmptrans.gui.model.SnmpProcess;
 import com.zenika.snmptrans.gui.repository.ConfRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +27,18 @@ public class SnmptransGuiServiceImpl implements SnmptransGuiService {
     }
 
     @Override
-    public void push(SnmpProcess snmpProcess) throws JsonProcessingException {
+    public void push(SnmpProcess snmpProcess) throws IOException {
         if (snmpProcess.getId() == null) {
-            this.confRepository.save(snmpProcess);
+            SnmpProcess test = this.confRepository.get(snmpProcess.getServer().getHost(), snmpProcess.getServer().getPort());
+
+            if (test == null) {
+                this.confRepository.save(snmpProcess);
+            } else {
+                for (QuerySet querySet : snmpProcess.getQuerySets()){
+                    test.getQuerySets().add(querySet);
+                }
+                this.confRepository.update(test);
+            }
         } else {
             this.confRepository.update(snmpProcess);
         }

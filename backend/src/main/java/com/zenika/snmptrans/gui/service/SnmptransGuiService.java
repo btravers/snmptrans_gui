@@ -13,7 +13,7 @@ public interface SnmptransGuiService {
 
     SnmpProcess get(String host, int port) throws IOException;
 
-    void push(SnmpProcess snmpProcess) throws JsonProcessingException;
+    void push(SnmpProcess snmpProcess) throws IOException;
 
     void delete(String host, int port);
 

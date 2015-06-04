@@ -68,6 +68,7 @@ public class ConfRepositoryImpl implements ConfRepository {
         if (searchResponse.getHits().getHits().length == 1) {
             SearchHit hit = searchResponse.getHits().getHits()[0];
             SnmpProcess snmpProcess = mapper.readValue(hit.getSourceAsString(), SnmpProcess.class);
+            snmpProcess.setId(hit.getId());
 
             return snmpProcess;
         } else if (searchResponse.getHits().getHits().length == 0) {
