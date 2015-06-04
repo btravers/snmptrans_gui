@@ -1,6 +1,5 @@
 package com.zenika.snmptrans.gui.web;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zenika.snmptrans.gui.model.SnmpProcess;
 import com.zenika.snmptrans.gui.service.SnmptransGuiService;
@@ -21,7 +20,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 @Controller
 public class SnmptransGuiController {

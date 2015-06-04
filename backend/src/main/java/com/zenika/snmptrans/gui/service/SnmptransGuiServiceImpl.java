@@ -46,6 +46,6 @@ public class SnmptransGuiServiceImpl implements SnmptransGuiService {
 
     @Override
     public void delete(String host, int port) {
-        this.delete(host, port);
+        this.confRepository.delete(host, port);
     }
 }
