@@ -37,7 +37,7 @@ public class SnmptransGuiController {
         return "index.html";
     }
 
-    @RequestMapping(value = "/server", method = RequestMethod.GET)
+    @RequestMapping(value = "/snmpprocess", method = RequestMethod.GET)
     @ResponseBody
     public SnmpProcess get(@RequestParam(value = "host", required = true) String host,
                            @RequestParam(value = "port", required = true) int port) {
@@ -49,13 +49,13 @@ public class SnmptransGuiController {
         return null;
     }
 
-    @RequestMapping(value = "/server/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/snmpprocess/all", method = RequestMethod.GET)
     @ResponseBody
     public Collection<Map<String, Object>> findAllServers() {
         return this.snmptransGuiService.findAllServers();
     }
 
-    @RequestMapping(value = "/server", method = RequestMethod.POST)
+    @RequestMapping(value = "/snmpprocess", method = RequestMethod.POST)
     @ResponseBody
     public void push(@Valid @RequestBody SnmpProcess snmpProcess) {
         try {
@@ -65,14 +65,14 @@ public class SnmptransGuiController {
         }
     }
 
-    @RequestMapping(value = "/server", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/snmpprocess", method = RequestMethod.DELETE)
     @ResponseBody
     public void delete(@RequestParam(value = "host", required = true) String host,
                        @RequestParam(value = "port", required = true) int port) {
         this.snmptransGuiService.delete(host, port);
     }
 
-    @RequestMapping(value = "/server/download", method = RequestMethod.GET)
+    @RequestMapping(value = "/snmpprocess/download", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<InputStreamResource> download(@RequestParam(value = "host", required = true) String host,
                                                         @RequestParam(value = "port", required = true) int port) {
@@ -96,7 +96,7 @@ public class SnmptransGuiController {
         return null;
     }
 
-    @RequestMapping(value = "/server/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/snmpprocess/upload", method = RequestMethod.POST)
     @ResponseBody
     public void upload(@RequestParam("file") MultipartFile file) {
         if (!file.isEmpty()) {

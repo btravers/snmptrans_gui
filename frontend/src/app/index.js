@@ -1,8 +1,8 @@
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-  angular
-    .module('SnmptransGui', ['angularFileUpload', 'ui.bootstrap', 'ngToast', 'oitozero.ngSweetAlert']);
+    angular
+        .module('SnmptransGui', ['angularFileUpload', 'ui.bootstrap', 'ngToast', 'oitozero.ngSweetAlert']);
 
 })();
 
