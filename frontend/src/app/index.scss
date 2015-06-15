@@ -1,3 +1,12 @@
+@import '../../bower_components/bootswatch-scss/flatly/variables';
+@import '../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap';
+@import '../../bower_components/bootswatch-scss/flatly/bootswatch';
+
+button.btn-link {
+  padding-right: 5px !important;
+  padding-left: 5px !important;
+}
+
 /* Do not remove this comments bellow. It's the markers used by gulp-inject to inject
    all your sass files automatically */
 // injector

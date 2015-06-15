@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+  <div class="panel-heading">SNMP agent</div>
+  <div class="panel-body">
+
+    <div class="form-group col-sm-12">
+      <label class="control-label">Description</label>
+      <input type="text" class="form-control" ng-model="agent.description">
+    </div>
+
+    <div class="form-group col-sm-12">
+      <label class="control-label">Host</label>
+      <input type="text" class="form-control" ng-model="agent.host">
+    </div>
+
+    <div class="form-group col-sm-12">
+      <label class="control-label">Port</label>
+      <input type="text" class="form-control" ng-model="agent.port">
+    </div>
+
+    <div class="form-group col-sm-12">
+      <label class="control-label">Version</label>
+      <select class="form-control" ng-model="version">
+        <option>V1</option>
+        <option>V2c</option>
+        <option>V3</option>
+      </select>
+    </div>
+
+  </div>
+</div>

@@ -1,86 +1,95 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>frontend</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <meta charset="utf-8">
+  <title>frontend</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
-    <link rel="stylesheet" href="app/vendor.css">
-    <!-- bower:css -->
-    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
-    <!-- endbower -->
-    <!-- endbuild -->
+  <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+  <link rel="stylesheet" href="app/vendor.css">
+  <!-- bower:css -->
+  <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+  <!-- endbower -->
+  <!-- endbuild -->
 
-    <!-- build:css({.tmp/serve,src}) styles/app.css -->
-    <!-- inject:css -->
-    <!-- css files will be automatically insert here -->
-    <!-- endinject -->
-    <!-- endbuild -->
+  <!-- build:css({.tmp/serve,src}) styles/app.css -->
+  <!-- inject:css -->
+  <!-- css files will be automatically insert here -->
+  <!-- endinject -->
+  <!-- endbuild -->
 </head>
 <body ng-app="SnmptransGui">
 <!--[if lt IE 10]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
+  your browser</a> to improve your experience.</p>
 <![endif]-->
 
 <div class="jumbotron">
-    <div class="container">
-        <h1>SNMPTRANS GUI</h1>
-    </div>
+  <div class="container">
+    <h1>SNMPTRANS GUI</h1>
+  </div>
 </div>
 
 <div class="container-fluid" ng-controller="Main">
-    <toast></toast>
+  <toast></toast>
 
-    <div class="row">
+  <div class="row">
 
-        <div class="col-xs-3">
-            <button ng-hide="BlankSnmpProcess" type="button" class="btn btn-primary btn-lg btn-block"
-                    ng-click="">Create new SNMP process
-            </button>
-            <button ng-show="BlankSnmpProcess" type="button" class="btn btn-default btn-lg btn-block"
-                    ng-click="">Cancel
-            </button>
-            <button type="button" class="btn btn-default btn-lg btn-block" ng-click="">
-                <span class="fa fa-upload"></span> Load JSON files
-            </button>
+    <div class="col-xs-3">
+      <button ng-hide="BlankSnmpProcess" type="button" class="btn btn-primary btn-lg btn-block"
+              ng-click="createBlankSnmpProcess">Create new SNMP process
+      </button>
+      <button ng-show="BlankSnmpProcess" type="button" class="btn btn-default btn-lg btn-block"
+              ng-click="removeBlankSnmpProcess">Cancel
+      </button>
+      <button type="button" class="btn btn-default btn-lg btn-block" ng-click="">
+        <span class="fa fa-upload"></span> Load JSON files
+      </button>
 
-            <br>
+      <br>
 
-            <div class="well servers-list">
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="server-item" ng-repeat="item in list" role="presentation">
-                        <div class="row">
-                            <div class="col-sm-7">
-                                <button class="btn btn-link" ng-click="unSavedChanges(display, item.host, item.port)" popover="{{ item.host }}:{{ item.port }}" popover-trigger="mouseenter">
-                                    {{ printServer(item.host, item.port) }}
-                                </button>
-                            </div>
-                            <div class="col-sm-5">
-                                <button class="btn btn-link" ng-click="" style="display: inline-block;" popover="Download" popover-trigger="mouseenter">
-                                    <span class="fa fa-download"></span>
-                                </button>
-                                <button class="btn btn-link" ng-click="" style="display: inline-block;" popover="Duplicate" popover-trigger="mouseenter">
-                                    <span class="fa fa-copy"></span>
-                                </button>
-                                <button class="btn btn-link" ng-click="" style="display: inline-block;" popover="Delete" popover-trigger="mouseenter">
-                                    <span class="fa fa-trash"></span>
-                                </button>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+      <div class="well servers-list">
+        <ul class="nav nav-pills nav-stacked">
+          <li class="server-item" ng-repeat="item in list" role="presentation">
+            <div class="row">
+              <div class="col-sm-7">
+                <button class="btn btn-link" ng-click="displaySnmpProcess(item.host, item.port)"
+                        popover="{{ item.host }}:{{ item.port }}" popover-trigger="mouseenter">
+                  {{ printServer(item.host, item.port) }}
+                </button>
+              </div>
+              <div class="col-sm-5">
+                <button class="btn btn-link" ng-click="" style="display: inline-block;" popover="Download"
+                        popover-trigger="mouseenter">
+                  <span class="fa fa-download"></span>
+                </button>
+                <button class="btn btn-link" ng-click="" style="display: inline-block;" popover="Duplicate"
+                        popover-trigger="mouseenter">
+                  <span class="fa fa-copy"></span>
+                </button>
+                <button class="btn btn-link" ng-click="" style="display: inline-block;" popover="Delete"
+                        popover-trigger="mouseenter">
+                  <span class="fa fa-trash"></span>
+                </button>
+              </div>
             </div>
-
-        </div>
-
-        <div class="col-xs-9">
-        </div>
+          </li>
+        </ul>
+      </div>
 
     </div>
+
+    <div class="col-xs-9">
+
+      <snmp-process ng-show="SnmpProcess" process="SnmpProcess"></snmp-process>
+
+      <snmp-process ng-show="BlankSnmpProcess" process="BlankSnmpProcess"></snmp-process>
+
+    </div>
+
+  </div>
 
 </div>
 

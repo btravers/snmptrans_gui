@@ -1,0 +1,22 @@
+<span>
+  <accordion-heading>
+    Writer <span ng-show="writer.host">- {{ writer.host }}<span ng-show="writer.host">:{{ writer.port }}</span></span>
+  </accordion-heading>
+
+  <div class="row">
+    <div class="form-group">
+      <label class="control-label">Writer</label>
+      <select type="text" class="form-control" ng-model="writer['@class']"
+              ng-change="writerChange()">
+        <option value="com.zenika.snmptrans.model.output.BluefloodWriter">Blueflood</option>
+        <option value="com.zenika.snmptrans.model.output.GraphiteWriter">Graphite</option>
+      </select>
+    </div>
+
+    <blueflood-writer-form writer="writer"
+                           ng-show="writer['@class'] == 'com.zenika.snmptrans.model.output.BluefloodWriter'"></blueflood-writer-form>
+
+    <graphite-writer-form writer="writer"
+                          ng-show="writer['@class'] == 'com.zenika.snmptrans.model.output.GraphiteWriter'"></graphite-writer-form>
+  </div>
+</span>
