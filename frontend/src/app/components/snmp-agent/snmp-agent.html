@@ -7,24 +7,28 @@
       <input type="text" class="form-control" ng-model="agent.description">
     </div>
 
-    <div class="form-group col-sm-12">
+    <div class="form-group col-sm-6">
       <label class="control-label">Host</label>
       <input type="text" class="form-control" ng-model="agent.host">
     </div>
 
-    <div class="form-group col-sm-12">
+    <div class="form-group col-sm-6">
       <label class="control-label">Port</label>
       <input type="text" class="form-control" ng-model="agent.port">
     </div>
 
     <div class="form-group col-sm-12">
       <label class="control-label">Version</label>
-      <select class="form-control" ng-model="version">
+      <select class="form-control" ng-model="agent.version">
         <option>V1</option>
         <option>V2c</option>
         <option>V3</option>
       </select>
     </div>
+
+    <snmp-v1-form class="col-sm-12" ng-show="agent.version == 'V1'" agent="agent"></snmp-v1-form>
+    <snmp-v2c-form class="col-sm-12" ng-show="agent.version == 'V2c'" agent="agent"></snmp-v2c-form>
+    <snmp-v3-form class="col-sm-12" ng-show="agent.version == 'V3'" agent="agent"></snmp-v3-form>
 
   </div>
 </div>

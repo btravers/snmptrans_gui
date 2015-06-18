@@ -5,18 +5,41 @@
 
     <snmp-agent agent="process.server"></snmp-agent>
 
+    <hr>
+
     <accordion close-others="false">
       <accordion-group ng-repeat="set in process.querySets">
-        <query-set  set="set"></query-set>
+        <query-set process="process" index="$index" set="set"></query-set>
       </accordion-group>
     </accordion>
 
+    <span class="row">
+      <span class="col-sm-12 text-right">
+        <button type="button" class="btn btn-info" ng-click="process.addQuerySet()">Add query set</button>
+      </span>
+    </span>
+
+    <hr>
 
     <accordion close-others="false">
       <accordion-group ng-repeat="writer in process.writers">
-        <writer writer="writer"></writer>
+        <writer process="process" index="$index" writer="writer"></writer>
       </accordion-group>
     </accordion>
+
+    <span class="row">
+      <span class="col-sm-12 text-right">
+        <button type="button" class="btn btn-info" ng-click="process.addWriter()">Add output writer</button>
+      </span>
+    </span>
+
+    <hr>
+
+    <span class="row">
+      <span class="col-sm-12 text-right">
+        <button type="button" class="btn btn-success" ng-click="process.saveSnmpProcess()">Save changes</button>
+      </span>
+    </span>
 
   </div>
 

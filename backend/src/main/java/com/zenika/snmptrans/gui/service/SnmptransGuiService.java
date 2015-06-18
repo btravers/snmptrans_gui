@@ -1,6 +1,5 @@
 package com.zenika.snmptrans.gui.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zenika.snmptrans.gui.model.SnmpProcess;
 
 import java.io.IOException;

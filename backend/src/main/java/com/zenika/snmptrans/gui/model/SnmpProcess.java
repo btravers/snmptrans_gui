@@ -1,6 +1,5 @@
 package com.zenika.snmptrans.gui.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.Valid;
@@ -27,7 +26,6 @@ public class SnmpProcess {
         return id;
     }
 
-    @JsonIgnore
     public void setId(String id) {
         this.id = id;
     }

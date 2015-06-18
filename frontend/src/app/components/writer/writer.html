@@ -1,10 +1,10 @@
 <span>
   <accordion-heading>
-    Writer <span ng-show="writer.host">- {{ writer.host }}<span ng-show="writer.host">:{{ writer.port }}</span></span>
+    Writer <span ng-show="writer.settings.host">- {{ writer.settings.host }}<span ng-show="writer.settings.port">:{{ writer.settings.port }}</span></span>
   </accordion-heading>
 
   <div class="row">
-    <div class="form-group">
+    <div class="form-group  col-sm-12">
       <label class="control-label">Writer</label>
       <select type="text" class="form-control" ng-model="writer['@class']"
               ng-change="writerChange()">
@@ -18,5 +18,9 @@
 
     <graphite-writer-form writer="writer"
                           ng-show="writer['@class'] == 'com.zenika.snmptrans.model.output.GraphiteWriter'"></graphite-writer-form>
+
+    <span class="col-sm-12 text-right">
+      <button type="button" class="btn btn-danger" ng-click="process.removeWriter(index)"><span class="fa fa-remove"></span> Remove writer</button>
+    </span>
   </div>
 </span>

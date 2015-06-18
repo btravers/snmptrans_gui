@@ -10,7 +10,9 @@
       restrict: 'E',
       replace: true,
       scope: {
-        writer: '=writer'
+        writer: '=writer',
+        process: '=process',
+        index: '=index'
       },
       templateUrl: 'app/components/writer/writer.html'
     };

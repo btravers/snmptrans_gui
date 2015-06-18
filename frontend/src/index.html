@@ -38,13 +38,10 @@
   <div class="row">
 
     <div class="col-xs-3">
-      <button ng-hide="BlankSnmpProcess" type="button" class="btn btn-primary btn-lg btn-block"
-              ng-click="createBlankSnmpProcess">Create new SNMP process
+      <button type="button" class="btn btn-primary btn-lg btn-block"
+              ng-click="createSnmpProcess()">Create new SNMP process
       </button>
-      <button ng-show="BlankSnmpProcess" type="button" class="btn btn-default btn-lg btn-block"
-              ng-click="removeBlankSnmpProcess">Cancel
-      </button>
-      <button type="button" class="btn btn-default btn-lg btn-block" ng-click="">
+      <button type="button" class="btn btn-default btn-lg btn-block" ng-click="openUploader()">
         <span class="fa fa-upload"></span> Load JSON files
       </button>
 
@@ -61,15 +58,15 @@
                 </button>
               </div>
               <div class="col-sm-5">
-                <button class="btn btn-link" ng-click="" style="display: inline-block;" popover="Download"
+                <button class="btn btn-link" ng-click="downloadSnmpProcess(item.host, item.port)" style="display: inline-block;" popover="Download"
                         popover-trigger="mouseenter">
                   <span class="fa fa-download"></span>
                 </button>
-                <button class="btn btn-link" ng-click="" style="display: inline-block;" popover="Duplicate"
+                <button class="btn btn-link" ng-click="duplicateSnmpProcess(item.host, item.port)" style="display: inline-block;" popover="Duplicate"
                         popover-trigger="mouseenter">
                   <span class="fa fa-copy"></span>
                 </button>
-                <button class="btn btn-link" ng-click="" style="display: inline-block;" popover="Delete"
+                <button class="btn btn-link" ng-click="deleteSnmpProcess(item.host, item.port)" style="display: inline-block;" popover="Delete"
                         popover-trigger="mouseenter">
                   <span class="fa fa-trash"></span>
                 </button>
@@ -84,8 +81,6 @@
     <div class="col-xs-9">
 
       <snmp-process ng-show="SnmpProcess" process="SnmpProcess"></snmp-process>
-
-      <snmp-process ng-show="BlankSnmpProcess" process="BlankSnmpProcess"></snmp-process>
 
     </div>
 

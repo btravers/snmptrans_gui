@@ -61,7 +61,7 @@
       },
       "paths": {
         "src": "src",
-        "dist": "dist",
+        "dist": "target/classes/META-INF/site",
         "e2e": "e2e",
         "tmp": ".tmp"
       }

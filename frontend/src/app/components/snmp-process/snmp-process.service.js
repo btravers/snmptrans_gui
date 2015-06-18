@@ -5,7 +5,7 @@
     .module('SnmptransGui')
     .service('SnmpProcessService', SnmpProcessService);
 
-  function SnmpProcessService($http, $q, $rootScope, config, ngToast) {
+  function SnmpProcessService($http, $q, config) {
     this.findAllSnmpProcesses = findAllSnmpProcesses;
     this.getSnmpProcess = getSnmpProcess;
     this.pushSnmpProcess = pushSnmpProcess;
@@ -26,10 +26,6 @@
           list.resolve(response);
         })
         .error(function () {
-          ngToast.create({
-            className: 'danger',
-            content: 'An error occurred when loading servers list'
-          });
           list.reject();
         });
 
@@ -55,10 +51,6 @@
           snmpprocess.resolve(response);
         })
         .error(function () {
-          ngToast.create({
-            className: 'danger',
-            content: 'An error occurred when loading the SNMP process'
-          });
           snmpprocess.reject();
         });
 
@@ -78,20 +70,9 @@
 
       $http(req)
         .success(function () {
-          ngToast.create({
-            className: 'success',
-            content: 'Save SNMP process successfully'
-          });
-          $rootScope.$emit('update', {
-            host: snmpprocess.server.host,
-            port: snmpprocess.server.port
-          });
+          result.resolve();
         })
         .error(function (response) {
-          ngToast.create({
-            className: 'danger',
-            content: 'An error occurred when saving SNMP process'
-          });
           result.reject(response);
         });
 
@@ -114,17 +95,9 @@
 
       $http(req)
         .success(function () {
-          ngToast.create({
-            className: 'success',
-            content: 'Delete SNMP process successfully'
-          });
           result.resolve();
         })
         .error(function () {
-          ngToast.create({
-            className: 'danger',
-            content: 'An error occurred during the deletion of the SNMP process'
-          });
           result.reject();
         });
 

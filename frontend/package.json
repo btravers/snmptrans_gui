@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "SnmptransGui",
   "version": "1.0.0-SNAPSHOT",
   "scripts": {
     "test": "gulp test"
