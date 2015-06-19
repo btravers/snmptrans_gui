@@ -20,7 +20,7 @@ public class SnmpProcess {
 
     @Valid
     @NotEmpty
-    private Collection<QuerySet> querySets;
+    private Collection<Query> queries;
 
     public String getId() {
         return id;
@@ -46,12 +46,12 @@ public class SnmpProcess {
         this.server = server;
     }
 
-    public Collection<QuerySet> getQuerySets() {
-        return querySets;
+    public Collection<Query> getQueries() {
+        return queries;
     }
 
-    public void setQuerySets(Collection<QuerySet> querySets) {
-        this.querySets = querySets;
+    public void setQueries(Collection<Query> querySets) {
+        this.queries = querySets;
     }
 
 }

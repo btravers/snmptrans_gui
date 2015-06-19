@@ -11,13 +11,13 @@
 
       vm.id = null;
       vm.writers = [];
-      vm.querySets = [];
+      vm.queries = [];
       vm.server = {};
 
       vm.addWriter = addWriter;
       vm.removeWriter = removeWriter;
-      vm.addQuerySet = addQuerySet;
-      vm.removeQuerySet = removeQuerySet;
+      vm.addQuery = addQuery;
+      vm.removeQuery = removeQuery;
       vm.saveSnmpProcess = saveSnmpProcess;
 
       function addWriter() {
@@ -31,27 +31,29 @@
         vm.writers.splice(index, 1);
       }
 
-      function addQuerySet() {
-        vm.querySets.push({
-          description: null,
-          queries: []
+      function addQuery() {
+        vm.queries.push({
+          obj: null,
+          resultAlias: null,
+          attr: [],
+          typeName: null
         });
       }
 
-      function removeQuerySet(index) {
-        vm.querySets.splice(index, 1);
+      function removeQuery(index) {
+        vm.queries.splice(index, 1);
       }
 
       function saveSnmpProcess() {
-        for (var i = vm.querySets.length-1; i >= 0; i--) {
-          for (var j = vm.querySets[i].queries.length-1; j >= 0; j--) {
-            if (!vm.querySets[i].queries[j].oid) {
-              vm.querySets[i].queries.splice(j, 1);
-            }
+        for (var i = vm.queries.length-1; i >= 0; i--) {
+          if (!vm.queries[i].obj) {
+            vm.queries.splice(i, 1);
           }
 
-          if (!vm.querySets[i].queries || !vm.querySets[i].queries.length) {
-            vm.querySets.splice(i, 1);
+          for (var j = vm.queries[i].attr.length-1; j>=0; j--) {
+            if (!vm.queries[i].attr[j]) {
+              vm.queries[i].attr.splice(j, 1);
+            }
           }
         }
 

@@ -50,7 +50,7 @@
 
         $scope.SnmpProcess.id = snmpprocess.id;
         $scope.SnmpProcess.server = snmpprocess.server;
-        $scope.SnmpProcess.querySets = snmpprocess.querySets;
+        $scope.SnmpProcess.queries = snmpprocess.queries;
         $scope.SnmpProcess.writers = snmpprocess.writers;
       }, function () {
         ngToast.create({
@@ -82,7 +82,7 @@
         $scope.SnmpProcess = new SnmpProcessFactory();
 
         $scope.SnmpProcess.server = {};
-        $scope.SnmpProcess.querySets = snmpprocess.querySets;
+        $scope.SnmpProcess.queries = snmpprocess.queries;
         $scope.SnmpProcess.writers = snmpprocess.writers;
       });
     }
@@ -107,7 +107,7 @@
       $scope.SnmpProcess = new SnmpProcessFactory();
 
       $scope.SnmpProcess.server = {};
-      $scope.SnmpProcess.querySets = [];
+      $scope.SnmpProcess.queries = [];
       $scope.SnmpProcess.writers = [];
     }
 

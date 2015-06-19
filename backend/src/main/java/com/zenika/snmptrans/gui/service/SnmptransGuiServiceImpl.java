@@ -1,6 +1,6 @@
 package com.zenika.snmptrans.gui.service;
 
-import com.zenika.snmptrans.gui.model.QuerySet;
+import com.zenika.snmptrans.gui.model.Query;
 import com.zenika.snmptrans.gui.model.SnmpProcess;
 import com.zenika.snmptrans.gui.repository.ConfRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +29,15 @@ public class SnmptransGuiServiceImpl implements SnmptransGuiService {
     @Override
     public void push(SnmpProcess snmpProcess) throws IOException {
         if (snmpProcess.getId() == null) {
-            SnmpProcess test = this.confRepository.get(snmpProcess.getServer().getHost(), snmpProcess.getServer().getPort());
+            SnmpProcess existingSnmpProcess = this.confRepository.get(snmpProcess.getServer().getHost(), snmpProcess.getServer().getPort());
 
-            if (test == null) {
+            if (existingSnmpProcess == null) {
                 this.confRepository.save(snmpProcess);
             } else {
-                for (QuerySet querySet : snmpProcess.getQuerySets()){
-                    test.getQuerySets().add(querySet);
+                for (Query query : snmpProcess.getQueries()){
+                    existingSnmpProcess.getQueries().add(query);
                 }
-                this.confRepository.update(test);
+                this.confRepository.update(existingSnmpProcess);
             }
         } else {
             this.confRepository.update(snmpProcess);

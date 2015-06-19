@@ -8,14 +8,14 @@
     <hr>
 
     <accordion close-others="false">
-      <accordion-group ng-repeat="set in process.querySets">
-        <query-set process="process" index="$index" set="set"></query-set>
+      <accordion-group ng-repeat="query in process.queries">
+        <query process="process" index="$index" query="query"></query>
       </accordion-group>
     </accordion>
 
     <span class="row">
       <span class="col-sm-12 text-right">
-        <button type="button" class="btn btn-info" ng-click="process.addQuerySet()">Add query set</button>
+        <button type="button" class="btn btn-info" ng-click="process.addQuery()">Add query</button>
       </span>
     </span>
 
@@ -29,7 +29,7 @@
 
     <span class="row">
       <span class="col-sm-12 text-right">
-        <button type="button" class="btn btn-info" ng-click="process.addWriter()">Add output writer</button>
+        <button type="button" class="btn btn-info" ng-click="process.addWriter()">Add writer</button>
       </span>
     </span>
 
