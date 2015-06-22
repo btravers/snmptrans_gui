@@ -11,7 +11,8 @@
       replace: true,
       scope: {
         process: '=process',
-        query: '=query'
+        query: '=query',
+        snmpForm: '=snmpForm'
       },
       controller: controller,
       templateUrl: 'app/components/query/query.html'
@@ -27,6 +28,7 @@
 
       function removeAttr(index) {
         $scope.query.attr.splice(index, 1);
+        $scope.snmpForm.$setDirty();
       }
     }
   }

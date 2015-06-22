@@ -18,6 +18,8 @@
     $scope.createSnmpProcess = createSnmpProcess;
     $scope.downloadSnmpProcess = downloadSnmpProcess;
     $scope.openUploader = openUploader;
+    $scope.unSavedChanges = unSavedChanges;
+    $scope.deleteConfirmation = deleteConfirmation;
 
     $rootScope.$on('update', function (event, data) {
       $scope.updateList();
@@ -31,6 +33,7 @@
     });
 
     init();
+
 
     function init() {
       $scope.updateList();
@@ -61,6 +64,7 @@
           },
           function (isConfirm) {
             if (isConfirm) {
+              $scope.snmpForm.$setPristine();
               performAction.apply(this, Array.prototype.slice.call(args, 1));
             }
           });
@@ -69,24 +73,26 @@
       }
     }
 
-    function displaySnmpProcess(host, port) {
-      if ($scope.snmpForm.$dirty) {
-        SweetAlert.swal({
-            title: 'Some changes have not been saved!',
-            text: 'Changes will be lost if you continue.',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonText: "Continue"
-          },
-          function (isConfirm) {
-            if (!isConfirm) {
-              return;
-            } else {
-              $scope.snmpForm.$setPristine();
-            }
-          });
+    function deleteConfirmation(host, port) {
+      var close = true;
+      if ($scope.jmxForm.$dirty) {
+        close = false;
       }
+      SweetAlert.swal({
+        title: 'Are you sure?',
+        text: 'You will not be able to recover the server conf document after deleting.',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: "Delete",
+        closeOnConfirm: close
+      }, function (isConfirm) {
+        if (isConfirm) {
+          unSavedChanges(deleteSnmpProcess, host, port);
+        }
+      });
+    }
 
+    function displaySnmpProcess(host, port) {
       SnmpProcessService.getSnmpProcess(host, port).then(function (snmpprocess) {
         $scope.SnmpProcess = new SnmpProcessFactory();
 
@@ -94,6 +100,7 @@
         $scope.SnmpProcess.server = snmpprocess.server;
         $scope.SnmpProcess.queries = snmpprocess.queries;
         $scope.SnmpProcess.writers = snmpprocess.writers;
+        $scope.SnmpProcess.currentForm = $scope.snmpForm;
       }, function () {
         ngToast.create({
           className: 'danger',
@@ -103,23 +110,6 @@
     }
 
     function deleteSnmpProcess(host, port) {
-      if ($scope.snmpForm.$dirty) {
-        SweetAlert.swal({
-            title: 'Some changes have not been saved!',
-            text: 'Changes will be lost if you continue.',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonText: "Continue"
-          },
-          function (isConfirm) {
-            if (!isConfirm) {
-              return;
-            } else {
-              $scope.snmpForm.$setPristine();
-            }
-          });
-      }
-
       SnmpProcessService.deleteSnmpProcess(host, port).then(function () {
         ngToast.create({
           className: 'success',
@@ -137,29 +127,13 @@
     }
 
     function duplicateSnmpProcess(host, port) {
-      if ($scope.snmpForm.$dirty) {
-        SweetAlert.swal({
-            title: 'Some changes have not been saved!',
-            text: 'Changes will be lost if you continue.',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonText: "Continue"
-          },
-          function (isConfirm) {
-            if (!isConfirm) {
-              return;
-            } else {
-              $scope.snmpForm.$setPristine();
-            }
-          });
-      }
-
       SnmpProcessService.getSnmpProcess(host, port).then(function (snmpprocess) {
         $scope.SnmpProcess = new SnmpProcessFactory();
 
         $scope.SnmpProcess.server = {};
         $scope.SnmpProcess.queries = snmpprocess.queries;
         $scope.SnmpProcess.writers = snmpprocess.writers;
+        $scope.SnmpProcess.currentForm = $scope.snmpForm;
       });
     }
 
@@ -180,28 +154,7 @@
     }
 
     function createSnmpProcess() {
-      if ($scope.snmpForm.$dirty) {
-        SweetAlert.swal({
-            title: 'Some changes have not been saved!',
-            text: 'Changes will be lost if you continue.',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonText: "Continue"
-          },
-          function (isConfirm) {
-            if (!isConfirm) {
-              return;
-            } else {
-              $scope.snmpForm.$setPristine();
-            }
-          });
-      }
-
       $scope.SnmpProcess = new SnmpProcessFactory();
-
-      $scope.SnmpProcess.server = {};
-      $scope.SnmpProcess.queries = [];
-      $scope.SnmpProcess.writers = [];
     }
 
     function downloadSnmpProcess(host, port) {

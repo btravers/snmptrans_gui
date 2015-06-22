@@ -10,6 +10,7 @@
       var vm = this;
 
       vm.id = null;
+      vm.currentForm = null;
       vm.writers = [];
       vm.queries = [];
       vm.server = {};
@@ -29,6 +30,7 @@
 
       function removeWriter(index) {
         vm.writers.splice(index, 1);
+        vm.currentForm.$setDirty();
       }
 
       function addQuery() {
@@ -42,6 +44,7 @@
 
       function removeQuery(index) {
         vm.queries.splice(index, 1);
+        vm.currentForm.$setDirty();
       }
 
       function saveSnmpProcess() {

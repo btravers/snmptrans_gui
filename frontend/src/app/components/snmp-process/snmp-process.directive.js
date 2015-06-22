@@ -10,7 +10,8 @@
       restrict: 'E',
       replace: true,
       scope: {
-        process: '=process'
+        process: '=process',
+        snmpForm: '=snmpForm'
       },
       templateUrl: 'app/components/snmp-process/snmp-process.html'
     };
