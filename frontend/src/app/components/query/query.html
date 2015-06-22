@@ -3,21 +3,23 @@
     Query <span ng-show="query.resultAlias">- {{ query.resultAlias }}</span>
   </accordion-heading>
 
-  <div class="row">
-    <div class="form-group  col-sm-12">
+  <div class="row panel-info">
+    <div class="form-group col-sm-4">
       <label class="control-label">Object</label>
       <input type="text" class="form-control" ng-model="query.obj">
     </div>
 
-    <div class="form-group  col-sm-12">
+    <div class="form-group col-sm-4">
       <label class="control-label">Alias</label>
       <input type="text" class="form-control" ng-model="query.resultAlias">
     </div>
 
-    <div class="form-group  col-sm-12">
+    <div class="form-group col-sm-4">
       <label class="control-label">Type Name</label>
       <input type="text" class="form-control" ng-model="query.typeName">
     </div>
+
+    <hr>
 
     <div ng-repeat="(i, attr) in query.attr track by $index" class="form-group col-sm-4">
       <label class="control-label">Attribute {{ $index + 1 }}</label>
@@ -31,12 +33,14 @@
       </div>
     </div>
 
+    <hr>
+
     <span class="col-sm-12 text-right">
-      <button type="button" class="btn btn-info" ng-click="addAttr()">
+      <button type="button" class="btn btn-default" ng-click="addAttr()">
         Add attribute
       </button>
       <button type="button" class="btn btn-danger" ng-click="process.removeQuery(index)">
-        <span class="fa fa-remove"></span> Remove query
+        Remove query
       </button>
     </span>
   </div>

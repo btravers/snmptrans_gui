@@ -69,6 +69,8 @@
             content: 'Save SNMP process successfully'
           });
 
+          $rootScope.$emit('save', {});
+
           $rootScope.$emit('update', {
             host: vm.server.host,
             port: vm.server.port

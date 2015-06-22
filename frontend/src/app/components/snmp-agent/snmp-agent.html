@@ -1,18 +1,20 @@
-<div class="panel panel-default">
-  <div class="panel-heading">SNMP agent</div>
-  <div class="panel-body">
+<span>
+  <accordion-heading>
+    SNMP agent
+  </accordion-heading>
 
-    <div class="form-group col-sm-12">
+  <div class="row panel-info">
+    <div class="form-group col-sm-6">
       <label class="control-label">Description</label>
       <input type="text" class="form-control" ng-model="agent.description">
     </div>
 
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-4">
       <label class="control-label">Host</label>
       <input type="text" class="form-control" ng-model="agent.host">
     </div>
 
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-2">
       <label class="control-label">Port</label>
       <input type="text" class="form-control" ng-model="agent.port">
     </div>
@@ -29,6 +31,5 @@
     <snmp-v1-form class="col-sm-12" ng-show="agent.version == 'V1'" agent="agent"></snmp-v1-form>
     <snmp-v2c-form class="col-sm-12" ng-show="agent.version == 'V2c'" agent="agent"></snmp-v2c-form>
     <snmp-v3-form class="col-sm-12" ng-show="agent.version == 'V3'" agent="agent"></snmp-v3-form>
-
   </div>
-</div>
+</span>

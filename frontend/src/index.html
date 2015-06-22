@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>frontend</title>
+  <title>SNMPTRANS</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -39,7 +39,7 @@
 
     <div class="col-xs-3">
       <button type="button" class="btn btn-primary btn-lg btn-block"
-              ng-click="createSnmpProcess()">Create new SNMP process
+              ng-click="createSnmpProcess()">Create new process
       </button>
       <button type="button" class="btn btn-default btn-lg btn-block" ng-click="openUploader()">
         <span class="fa fa-upload"></span> Load JSON files
@@ -80,7 +80,9 @@
 
     <div class="col-xs-9">
 
-      <snmp-process ng-show="SnmpProcess" process="SnmpProcess"></snmp-process>
+      <form name="snmpForm">
+        <snmp-process ng-show="SnmpProcess" process="SnmpProcess"></snmp-process>
+      </form>
 
     </div>
 

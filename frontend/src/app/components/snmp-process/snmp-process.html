@@ -3,7 +3,11 @@
   <div class="panel-heading">{{process.server.host}}:{{process.server.port}}</div>
   <div class="panel-body">
 
-    <snmp-agent agent="process.server"></snmp-agent>
+    <accordion close-others="false">
+      <accordion-group is-open="true">
+        <snmp-agent agent="process.server"></snmp-agent>
+      </accordion-group>
+    </accordion>
 
     <hr>
 
