@@ -72,7 +72,7 @@
             content: 'Save SNMP process successfully'
           });
 
-          $rootScope.$emit('save', {});
+          vm.currentForm.$setPristine();
 
           $rootScope.$emit('update', {
             host: vm.server.host,

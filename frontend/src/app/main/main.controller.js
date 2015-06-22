@@ -28,12 +28,7 @@
       }
     });
 
-    $rootScope.$on('save', function () {
-      $scope.snmpForm.$setPristine();
-    });
-
     init();
-
 
     function init() {
       $scope.updateList();
@@ -155,6 +150,7 @@
 
     function createSnmpProcess() {
       $scope.SnmpProcess = new SnmpProcessFactory();
+      $scope.SnmpProcess.currentForm = $scope.snmpForm;
     }
 
     function downloadSnmpProcess(host, port) {
