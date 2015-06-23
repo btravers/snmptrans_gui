@@ -17,6 +17,8 @@
       </accordion-group>
     </accordion>
 
+    <p class="text-danger" ng-show="showErrorMessage('queries')">At least one query must be supplied.</p>
+
     <span class="row">
       <span class="col-sm-12 text-right">
         <button type="button" class="btn btn-info" ng-click="process.addQuery()">Add query</button>
@@ -30,6 +32,8 @@
         <writer process="process" index="$index" writer="writer"></writer>
       </accordion-group>
     </accordion>
+
+    <p class="text-danger" ng-show="showErrorMessage('writers')">At least one writer must be supplied.</p>
 
     <span class="row">
       <span class="col-sm-12 text-right">

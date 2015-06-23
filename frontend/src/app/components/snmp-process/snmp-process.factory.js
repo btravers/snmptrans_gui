@@ -5,7 +5,7 @@
     .module('SnmptransGui')
     .factory('SnmpProcessFactory', SnmpProcessFactory);
 
-  function SnmpProcessFactory($rootScope, SnmpProcessService, ngToast) {
+  function SnmpProcessFactory($rootScope, SnmpProcessService, FormErrorHandler, ngToast) {
     var SnmpProcess = function () {
       var vm = this;
 
@@ -48,25 +48,25 @@
       }
 
       function saveSnmpProcess() {
-        for (var i = vm.queries.length-1; i >= 0; i--) {
+        for (var i = vm.queries.length - 1; i >= 0; i--) {
           if (!vm.queries[i].obj) {
             vm.queries.splice(i, 1);
           }
 
-          for (var j = vm.queries[i].attr.length-1; j>=0; j--) {
+          for (var j = vm.queries[i].attr.length - 1; j >= 0; j--) {
             if (!vm.queries[i].attr[j]) {
               vm.queries[i].attr.splice(j, 1);
             }
           }
         }
 
-        for (var i = vm.writers.length-1; i >= 0; i--) {
+        for (var i = vm.writers.length - 1; i >= 0; i--) {
           if (!vm.writers[i]['@class']) {
             vm.writers.splice(i, 1);
           }
         }
 
-        SnmpProcessService.pushSnmpProcess(vm).then(function() {
+        SnmpProcessService.pushSnmpProcess(vm).then(function () {
           ngToast.create({
             className: 'success',
             content: 'Save SNMP process successfully'
@@ -78,12 +78,12 @@
             host: vm.server.host,
             port: vm.server.port
           });
-        }, function (error) {
+        }, function (errors) {
           ngToast.create({
             className: 'danger',
             content: 'An error occurred when saving SNMP process'
           });
-          // TODO display error message
+          FormErrorHandler.setErrors(errors);
         });
       }
     };

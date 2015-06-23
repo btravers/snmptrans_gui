@@ -1,6 +1,7 @@
 package com.zenika.snmptrans.gui.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zenika.snmptrans.gui.exception.SnmptransGuiException;
 import com.zenika.snmptrans.gui.model.SnmpProcess;
 import com.zenika.snmptrans.gui.service.SnmptransGuiService;
 import org.slf4j.Logger;
@@ -40,13 +41,13 @@ public class SnmptransGuiController {
     @RequestMapping(value = "/snmpprocess", method = RequestMethod.GET)
     @ResponseBody
     public SnmpProcess get(@RequestParam(value = "host", required = true) String host,
-                           @RequestParam(value = "port", required = true) int port) {
+                           @RequestParam(value = "port", required = true) int port) throws SnmptransGuiException {
         try {
             return this.snmptransGuiService.get(host, port);
         } catch (IOException e) {
             logger.error(e.getMessage());
+            throw new SnmptransGuiException(e.getMessage());
         }
-        return null;
     }
 
     @RequestMapping(value = "/snmpprocess/all", method = RequestMethod.GET)
@@ -57,11 +58,12 @@ public class SnmptransGuiController {
 
     @RequestMapping(value = "/snmpprocess", method = RequestMethod.POST)
     @ResponseBody
-    public void push(@Valid @RequestBody SnmpProcess snmpProcess) {
+    public void push(@Valid @RequestBody SnmpProcess snmpProcess) throws SnmptransGuiException {
         try {
             this.snmptransGuiService.push(snmpProcess);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
+            throw new SnmptransGuiException(e.getMessage());
         }
     }
 
@@ -75,7 +77,7 @@ public class SnmptransGuiController {
     @RequestMapping(value = "/snmpprocess/download", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<InputStreamResource> download(@RequestParam(value = "host", required = true) String host,
-                                                        @RequestParam(value = "port", required = true) int port) {
+                                                        @RequestParam(value = "port", required = true) int port) throws SnmptransGuiException {
         try {
             SnmpProcess snmpProcess = this.snmptransGuiService.get(host, port);
 
@@ -92,13 +94,13 @@ public class SnmptransGuiController {
                     respHeaders, HttpStatus.OK);
         } catch (IOException e) {
             logger.error(e.getMessage());
+            throw new SnmptransGuiException(e.getMessage());
         }
-        return null;
     }
 
     @RequestMapping(value = "/snmpprocess/upload", method = RequestMethod.POST)
     @ResponseBody
-    public void upload(@RequestParam("file") MultipartFile file) {
+    public void upload(@RequestParam("file") MultipartFile file) throws SnmptransGuiException {
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
@@ -109,6 +111,7 @@ public class SnmptransGuiController {
                 this.snmptransGuiService.push(snmpProcess);
             } catch (IOException e) {
                 logger.error(e.getMessage());
+                throw new SnmptransGuiException(e.getMessage());
             }
         }
     }

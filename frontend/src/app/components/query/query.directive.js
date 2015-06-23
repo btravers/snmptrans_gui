@@ -18,9 +18,14 @@
       templateUrl: 'app/components/query/query.html'
     };
 
-    function controller($scope) {
+    function controller($scope, FormErrorHandler) {
       $scope.addAttr = addAttr;
       $scope.removeAttr = removeAttr;
+      $scope.showErrorMessage = showErrorMessage;
+
+      function showErrorMessage(key) {
+        return FormErrorHandler.existError(key);
+      }
 
       function addAttr() {
         $scope.query.attr.push(null);
