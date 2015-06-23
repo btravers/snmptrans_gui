@@ -23,8 +23,6 @@ public abstract class AbstractSnmptransGuiServiceTest {
     @Autowired
     protected ObjectMapper mapper;
 
-    protected abstract void flushChanges();
-
     /**
      * Load some data in the repository:
      *  - /test/document1.json
@@ -99,7 +97,6 @@ public abstract class AbstractSnmptransGuiServiceTest {
 
         snmpProcess = mapper.readValue(getClass().getResourceAsStream("/document3.json"), SnmpProcess.class);
         this.snmptransGuiService.push(snmpProcess);
-        this.flushChanges();
 
         snmpProcess = this.snmptransGuiService.get("192.168.0.2", 161);
         Assertions.assertThat(snmpProcess).isNotNull();
@@ -126,12 +123,11 @@ public abstract class AbstractSnmptransGuiServiceTest {
     }
 
     @Test
-    public void shouldpdateSnmpProcess() throws IOException {
+    public void shouldUpdateSnmpProcess() throws IOException {
         SnmpProcess snmpProcess = this.snmptransGuiService.get("localhost", 161);
         Assertions.assertThat(snmpProcess).isNotNull();
         snmpProcess.getServer().setHost("127.0.0.1");
         this.snmptransGuiService.push(snmpProcess);
-        this.flushChanges();
 
         snmpProcess = this.snmptransGuiService.get("localhost", 161);
         Assertions.assertThat(snmpProcess).isNull();
@@ -160,12 +156,24 @@ public abstract class AbstractSnmptransGuiServiceTest {
     }
 
     @Test
+    public void shouldNotCreateNewSnmpProcess() throws IOException {
+        SnmpProcess snmpProcess = this.snmptransGuiService.get("localhost", 161);
+        Assertions.assertThat(snmpProcess).isNotNull();
+        Assertions.assertThat(snmpProcess.getQueries().size()).isEqualTo(1);
+
+        this.snmptransGuiService.push(this.mapper.readValue(getClass().getResourceAsStream("/document1.json"), SnmpProcess.class));
+
+        snmpProcess = this.snmptransGuiService.get("localhost", 161);
+        Assertions.assertThat(snmpProcess).isNotNull();
+        Assertions.assertThat(snmpProcess.getQueries().size()).isEqualTo(2);
+    }
+
+    @Test
     public void shouldDelete() throws IOException {
         SnmpProcess snmpProcess = this.snmptransGuiService.get("localhost", 161);
         Assertions.assertThat(snmpProcess).isNotNull();
 
         this.snmptransGuiService.delete("localhost", 161);
-        this.flushChanges();
 
         snmpProcess = this.snmptransGuiService.get("localhost", 161);
         Assertions.assertThat(snmpProcess).isNull();

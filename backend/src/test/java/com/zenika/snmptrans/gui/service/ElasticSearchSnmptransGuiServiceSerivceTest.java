@@ -21,14 +21,10 @@ public class ElasticSearchSnmptransGuiServiceSerivceTest extends AbstractSnmptra
     private Client client;
 
     @Override
-    protected void flushChanges() {
-        this.client.admin().indices().flush(new FlushRequest(AppConfig.INDEX)).actionGet();
-    }
-
-    @Override
     public void setUp() {
         try {
             this.client.prepareIndex(AppConfig.INDEX, AppConfig.CONF_TYPE)
+                    .setRefresh(true)
                     .setSource(IOUtils.toString(getClass().getResourceAsStream("/document1.json")))
                     .execute().actionGet();
         } catch (IOException e) {
@@ -37,13 +33,12 @@ public class ElasticSearchSnmptransGuiServiceSerivceTest extends AbstractSnmptra
 
         try {
             this.client.prepareIndex(AppConfig.INDEX, AppConfig.CONF_TYPE)
+                    .setRefresh(true)
                     .setSource(IOUtils.toString(getClass().getResourceAsStream("/document2.json")))
                     .execute().actionGet();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        this.flushChanges();
     }
 
     @Override
