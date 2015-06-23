@@ -27,7 +27,7 @@ import java.util.Map;
 
 @Configuration
 @Import(com.zenika.snmptrans.AppConfig.class)
-@ComponentScan({"com.zenika.back.service", "com.zenika.back.repository"})
+@ComponentScan({"com.zenika.snmptrans.gui.service", "com.zenika.snmptrans.gui.repository"})
 public class AppConfig {
     private static final Logger logger = LoggerFactory.getLogger(AppConfig.class);
 
@@ -65,7 +65,7 @@ public class AppConfig {
         return new StandardServletMultipartResolver();
     }
 
-    @Bean(name = "client")
+    @Bean
     public Client client() {
         logger.info("Elasticsearch client instantiation for prod");
         Client client = null;

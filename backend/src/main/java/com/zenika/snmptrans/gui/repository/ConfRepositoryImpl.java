@@ -14,6 +14,7 @@ import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.*;
 
@@ -25,6 +26,11 @@ public class ConfRepositoryImpl implements ConfRepository {
 
     @Autowired
     private ObjectMapper mapper;
+
+    @PostConstruct
+    public void setUp() {
+        System.out.println();
+    }
 
     @Override
     public Collection<Map<String, Object>> findAllServers() {
