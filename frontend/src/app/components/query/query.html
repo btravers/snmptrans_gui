@@ -1,6 +1,6 @@
 <span>
   <accordion-heading>
-    Query <span ng-show="query.resultAlias">- {{ query.resultAlias }}</span>
+    Query <span ng-show="query.resultAlias || query.obj">- {{ query.resultAlias || query.obj }}</span>
   </accordion-heading>
 
   <div class="row panel-info" ng-class="{'has-error': showErrorMessage('query.obj')}">

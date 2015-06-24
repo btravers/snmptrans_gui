@@ -21,9 +21,7 @@
       if (!this.errors) {
         return false;
       }
-
       return key in this.errors;
     }
-
   }
 })();
