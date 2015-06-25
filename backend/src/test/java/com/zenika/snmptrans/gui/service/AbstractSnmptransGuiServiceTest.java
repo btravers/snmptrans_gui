@@ -76,7 +76,6 @@ public abstract class AbstractSnmptransGuiServiceTest {
         Assertions.assertThat(query.getTypeName()).isEqualTo("2");
         Assertions.assertThat(query.getResultAlias()).isEqualTo("cpu");
         Assertions.assertThat(query.getAttr().size()).isEqualTo(6);
-        Assertions.assertThat(query.getAttr()).containsAll(Arrays.asList("9", "50", "10", "52", "11", "53"));
 
         Assertions.assertThat(snmpProcess.getWriters().size()).isEqualTo(1);
         OutputWriter writer = snmpProcess.getWriters().iterator().next();
@@ -114,7 +113,6 @@ public abstract class AbstractSnmptransGuiServiceTest {
         Assertions.assertThat(query.getTypeName()).isEqualTo("2");
         Assertions.assertThat(query.getResultAlias()).isEqualTo("cpu");
         Assertions.assertThat(query.getAttr().size()).isEqualTo(6);
-        Assertions.assertThat(query.getAttr()).containsAll(Arrays.asList("9", "50", "10", "52", "11", "53"));
 
         Assertions.assertThat(snmpProcess.getWriters().size()).isEqualTo(1);
         OutputWriter writer = snmpProcess.getWriters().iterator().next();
@@ -147,7 +145,6 @@ public abstract class AbstractSnmptransGuiServiceTest {
         Assertions.assertThat(query.getTypeName()).isEqualTo("2");
         Assertions.assertThat(query.getResultAlias()).isEqualTo("cpu");
         Assertions.assertThat(query.getAttr().size()).isEqualTo(6);
-        Assertions.assertThat(query.getAttr()).containsAll(Arrays.asList("9", "50", "10", "52", "11", "53"));
 
         Assertions.assertThat(snmpProcess.getWriters().size()).isEqualTo(1);
         OutputWriter writer = snmpProcess.getWriters().iterator().next();

@@ -12,6 +12,30 @@ button.btn-link {
   padding-left: 5%;
 }
 
+.nested-group input:focus {
+  box-shadow: none;
+}
+
+.nested-group input:first-child {
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  width: 55px;
+}
+
+.nested-group input {
+  margin-left: -5px;
+  border-radius: 0px;
+}
+
+.nested-group  button {
+  margin-left: -5px;
+  border-left: none;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
 /* Do not remove this comments bellow. It's the markers used by gulp-inject to inject
    all your sass files automatically */
 // injector

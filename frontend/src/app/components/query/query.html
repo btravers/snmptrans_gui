@@ -12,23 +12,23 @@
 
     <div class="form-group col-sm-4">
       <label class="control-label">Alias</label>
-      <input type="text" class="form-control" ng-model="query.resultAlias">
+      <input type="text" class="form-control" ng-model="query.resultAlias" popover="Object alias" popover-trigger="mouseenter">
     </div>
 
     <div class="form-group col-sm-4" ng-class="{'has-error': showErrorMessage('query.typeName')}">
       <label class="control-label">Type Name</label>
-      <input type="text" class="form-control" ng-model="query.typeName">
+      <input type="text" class="form-control" ng-model="query.typeName" popover="Metic names location" popover-trigger="mouseenter">
       <p class="text-danger" ng-show="showErrorMessage('query.typeName')">The submitted value is incorrect.</p>
     </div>
 
     <hr>
 
-    <div ng-repeat="(i, attr) in query.attr track by $index" class="form-group col-sm-4">
+    <div ng-repeat="attr in query.attr" class="form-group col-sm-4">
       <label class="control-label">Attribute {{ $index + 1 }}</label>
-
-      <div class="form-inline">
-        <input type="text" class="form-control" ng-model="query.attr[i]">
-        <button type="button" class="btn btn-danger" ng-click="removeAttr(i)" popover-placement="right"
+      <div class="form-inline nested-group">
+        <input type="text" class="form-control" ng-model="attr.value" popover="Metric location" popover-trigger="mouseenter">
+        <input type="text" class="form-control" ng-model="attr.alias" popover="Metric alias" popover-trigger="mouseenter">
+        <button type="button" class="btn btn-danger" ng-click="removeAttr($index)" popover-placement="right"
                 popover="Remove" popover-trigger="mouseenter">
           <span class="fa fa-remove"></span>
         </button>

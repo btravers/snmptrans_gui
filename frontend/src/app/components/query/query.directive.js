@@ -28,7 +28,10 @@
       }
 
       function addAttr() {
-        $scope.query.attr.push(null);
+        $scope.query.attr.push({
+          value: null,
+          alias: null
+        });
       }
 
       function removeAttr(index) {
